@@ -1,1 +1,557 @@
 <h1> A responsive e-commerce skincare businessz</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Botanical Skincare Science</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS for Responsive Layout & Styling Architecture -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        :root {
+            --color-bg: #FAF8F5;
+            --color-text: #2C2A29;
+            --color-accent: #8EA899;
+            --color-muted: #7C756E;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            overflow-x: hidden;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Smooth Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* --- Scroll Animation Classes --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.215, 0.610, 0.355, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom subtle pulse for hero visuals */
+        @keyframes subtleZoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+
+        .hero-zoom {
+            animation: subtleZoom 20s infinite ease-in-out;
+        }
+
+        /* Custom Scrollbar for premium aesthetic */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D5CFC9;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8EA899;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-[#8EA899] text-white text-[11px] tracking-[0.25em] text-center py-2.5 px-4 uppercase font-medium">
+        Complimentary shipping on orders over $75 • Code: AURA26
+    </div>
+
+    <!-- SECTION 1: STICKY NAVIGATION HEADER -->
+    <header class="sticky top-0 z-50 bg-[#FAF8F5]/80 backdrop-blur-md border-b border-[#EAE5DF] transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menu-toggle" class="md:hidden text-neutral-800 hover:text-[#8EA899] focus:outline-none" aria-label="Toggle Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Brand Monicker / Logo -->
+            <div class="text-2xl tracking-[0.3em] uppercase font-light font-serif">
+                <a href="#" class="hover:opacity-80 transition">A U R <span class="text-[#8EA899] font-normal">A</span></a>
+            </div>
+
+            <!-- Desktop Nav Links Menu -->
+            <nav class="hidden md:flex space-x-10 text-xs tracking-[0.2em] uppercase font-medium">
+                <a href="#hero" class="hover:text-[#8EA899] transition duration-300">Home</a>
+                <a href="#collection" class="hover:text-[#8EA899] transition duration-300">Shop</a>
+                <a href="#philosophy" class="hover:text-[#8EA899] transition duration-300">Philosophy</a>
+                <a href="#ingredients" class="hover:text-[#8EA899] transition duration-300">Ingredients</a>
+                <a href="#testimonials" class="hover:text-[#8EA899] transition duration-300">Reviews</a>
+                <a href="#faq" class="hover:text-[#8EA899] transition duration-300">FAQ</a>
+            </nav>
+
+            <!-- User Utilities Mini Actions Menu -->
+            <div class="flex items-center space-x-5">
+                <a href="#" class="hover:text-[#8EA899] transition" aria-label="Search">
+                    <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </a>
+                <a href="#" class="hover:text-[#8EA899] transition relative" aria-label="Bag">
+                    <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span class="absolute -top-1.5 -right-1.5 bg-[#D1A084] text-white text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">1</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Full Dropdown Menu Layer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#FAF8F5] border-b border-[#EAE5DF] px-6 py-8 space-y-4">
+            <a href="#hero" class="block text-sm tracking-widest uppercase pb-2 border-b border-neutral-200/60">Home</a>
+            <a href="#collection" class="block text-sm tracking-widest uppercase pb-2 border-b border-neutral-200/60">Shop Collective</a>
+            <a href="#philosophy" class="block text-sm tracking-widest uppercase pb-2 border-b border-neutral-200/60">Our Philosophy</a>
+            <a href="#ingredients" class="block text-sm tracking-widest uppercase pb-2 border-b border-neutral-200/60">Ingredients Blueprint</a>
+            <a href="#testimonials" class="block text-sm tracking-widest uppercase pb-2 border-b border-neutral-200/60">Testimonials</a>
+            <a href="#faq" class="block text-sm tracking-widest uppercase">Common FAQs</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECTION 2: HERO SPOTLIGHT SPLIT -->
+        <section id="hero" class="relative bg-[#EAE5DF] min-h-[90vh] flex items-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div class="w-full h-full bg-cover bg-center mix-blend-multiply opacity-35 hero-zoom" style="background-image: url('https://images.unsplash.com/photo-1608248597481-496100c8c836?q=80&w=2000');"></div>
+            </div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <span class="text-xs tracking-[0.4em] uppercase text-[#8EA899] font-semibold block reveal">Organic • Dermatological • Conscious</span>
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-light text-[#2C2A29] leading-[1.1] font-serif reveal">
+                        Nourish your skin at a <br><span class="italic font-normal text-[#8EA899]">cellular level.</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-[#5C5752] max-w-xl mx-auto lg:mx-0 font-light leading-relaxed reveal">
+                        Sustainably engineered botanicals designed to restore your underlying skin barrier architecture cleanly. No filler chemicals. Ever.
+                    </p>
+                    <div class="pt-4 flex flex-col sm:flex-row justify-center lg:justify-start gap-4 reveal">
+                        <a href="#collection" class="bg-[#2C2A29] hover:bg-[#4A4744] text-white text-xs font-medium tracking-[0.25em] uppercase px-10 py-4.5 transition rounded-none shadow-sm text-center">
+                            Explore Serum Collective
+                        </a>
+                        <a href="#philosophy" class="border border-[#2C2A29] hover:bg-[#2C2A29] hover:text-white text-[#2C2A29] text-xs font-medium tracking-[0.25em] uppercase px-10 py-4.5 transition rounded-none text-center">
+                            Our Science
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 flex justify-center reveal">
+                    <div class="relative w-72 h-96 sm:w-85 sm:h-[480px] bg-white p-4 shadow-2xl rounded-t-full border border-[#EAE5DF]/60">
+                        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=800" alt="AURA Restorative Serum" class="w-full h-full object-cover rounded-t-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VALUE METRIC STRIP BANNER -->
+        <section class="bg-white border-b border-[#EAE5DF] py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="space-y-1 reveal">
+                    <h4 class="text-xs font-semibold tracking-widest uppercase text-[#2C2A29]">Clinical Focus</h4>
+                    <p class="text-xs text-[#7C756E] font-light">Dermatologist approved matrices</p>
+                </div>
+                <div class="space-y-1 reveal">
+                    <h4 class="text-xs font-semibold tracking-widest uppercase text-[#2C2A29]">100% Cruelty-Free</h4>
+                    <p class="text-xs text-[#7C756E] font-light">Vegan certified processing</p>
+                </div>
+                <div class="space-y-1 reveal">
+                    <h4 class="text-xs font-semibold tracking-widest uppercase text-[#2C2A29]">Sustainably Packaged</h4>
+                    <p class="text-xs text-[#7C756E] font-light">Recycled apothecary glass only</p>
+                </div>
+                <div class="space-y-1 reveal">
+                    <h4 class="text-xs font-semibold tracking-widest uppercase text-[#2C2A29]">True Transparency</h4>
+                    <p class="text-xs text-[#7C756E] font-light">Full trace ingredients log</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PRODUCT ESSENTIALS GALLERY -->
+        <section id="collection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+            <div class="text-center space-y-3 mb-20 reveal">
+                <span class="text-xs tracking-[0.3em] uppercase text-[#D1A084] font-semibold">The Daily Protocol</span>
+                <h2 class="text-3xl sm:text-4xl font-light text-[#2C2A29] font-serif">Core Balancing Formulas</h2>
+                <div class="w-16 h-[1px] bg-[#8EA899] mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
+                <!-- Product Card 1 -->
+                <div class="group flex flex-col justify-between reveal">
+                    <div class="aspect-[4/5] w-full overflow-hidden bg-[#EAE5DF] mb-5 relative">
+                        <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=800" alt="Resurfacing Niacinamide Complex" class="h-full w-full object-cover object-center group-hover:scale-105 transition duration-700">
+                        <span class="absolute top-4 left-4 bg-[#D1A084] text-white text-[9px] tracking-[0.2em] uppercase px-3 py-1 font-semibold">Best Seller</span>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-base font-medium text-[#2C2A29] group-hover:text-[#8EA899] transition"><a href="#">Resurfacing Niacinamide Complex</a></h3>
+                            <p class="text-base font-semibold text-[#5C5752]">$52</p>
+                        </div>
+                        <p class="text-[11px] text-[#8EA899] uppercase tracking-widest mb-3">Tone & Smooth</p>
+                        <p class="text-sm text-[#7C756E] font-light line-clamp-2 mb-5">Radically decreases redness while reinforcing overall environmental element defense blocks.</p>
+                    </div>
+                    <button class="w-full bg-[#2C2A29] text-white group-hover:bg-[#8EA899] text-xs tracking-widest uppercase py-3.5 transition font-medium rounded-none">Add To Bag</button>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="group flex flex-col justify-between reveal">
+                    <div class="aspect-[4/5] w-full overflow-hidden bg-[#EAE5DF] mb-5 relative">
+                        <img src="https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=800" alt="Ceramide Melting Cream Balm" class="h-full w-full object-cover object-center group-hover:scale-105 transition duration-700">
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-base font-medium text-[#2C2A29] group-hover:text-[#8EA899] transition"><a href="#">Ceramide Barrier Deep Cream</a></h3>
+                            <p class="text-base font-semibold text-[#5C5752]">$64</p>
+                        </div>
+                        <p class="text-[11px] text-[#8EA899] uppercase tracking-widest mb-3">Intense Hydration</p>
+                        <p class="text-sm text-[#7C756E] font-light line-clamp-2 mb-5">Ultra-rich nightly molecular layer engineered for dehydrated cells suffering harsh environment strip.</p>
+                    </div>
+                    <button class="w-full bg-[#2C2A29] text-white group-hover:bg-[#8EA899] text-xs tracking-widest uppercase py-3.5 transition font-medium rounded-none">Add To Bag</button>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="group flex flex-col justify-between reveal">
+                    <div class="aspect-[4/5] w-full overflow-hidden bg-[#EAE5DF] mb-5 relative">
+                        <img src="https://images.unsplash.com/photo-1620917670397-dc71186a1094?q=80&w=800" alt="Squalane Enzyme Melting Wash" class="h-full w-full object-cover object-center group-hover:scale-105 transition duration-700">
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-base font-medium text-[#2C2A29] group-hover:text-[#8EA899] transition"><a href="#">Squalane Milky Botanical Cleanser</a></h3>
+                            <p class="text-base font-semibold text-[#5C5752]">$38</p>
+                        </div>
+                        <p class="text-[11px] text-[#8EA899] uppercase tracking-widest mb-3">Balance & Reset</p>
+                        <p class="text-sm text-[#7C756E] font-light line-clamp-2 mb-5">An emulsion treatment that melts external dirt layers clean away without changing your pH balance.</p>
+                    </div>
+                    <button class="w-full bg-[#2C2A29] text-white group-hover:bg-[#8EA899] text-xs tracking-widest uppercase py-3.5 transition font-medium rounded-none">Add To Bag</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: BRAND PHILOSOPHY / MANIFESTO -->
+        <section id="philosophy" class="bg-white border-y border-[#EAE5DF] py-24 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative bg-neutral-100 aspect-square overflow-hidden max-h-[520px] order-last lg:order-first reveal">
+                    <img src="https://images.unsplash.com/photo-1556229174-5e42a09e45af?q=80&w=800" alt="Clean beauty formulation focus" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-6 lg:pl-6">
+                    <span class="text-xs tracking-[0.3em] uppercase text-[#8EA899] font-semibold block reveal">The Clean Metric</span>
+                    <h2 class="text-3xl sm:text-5xl font-light text-[#2C2A29] leading-tight font-serif reveal">Honest formulas built upon transparency.</h2>
+                    <p class="text-base text-[#5C5752] font-light leading-relaxed reveal">
+                        We skip synthetic dyes, harsh chemical parabens, and masking artificial perfumes. Each intentional ingredient is cleanly sourced and harvested at peak molecular potency to maximize cellular performance.
+                    </p>
+                    <div class="pt-4 space-y-4 reveal">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-2 h-2 rounded-full bg-[#8EA899] mt-2.5 shrink-0"></div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-[#2C2A29] tracking-wider uppercase">Eco-Harvest Processing</h4>
+                                <p class="text-xs text-[#7C756E] font-light mt-0.5">Sourced from small sustainable family plots utilizing low carbon footprint distilling systems.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-2 h-2 rounded-full bg-[#8EA899] mt-2.5 shrink-0"></div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-[#2C2A29] tracking-wider uppercase">Bio-Available Optimization</h4>
+                                <p class="text-xs text-[#7C756E] font-light mt-0.5">Engineered structurally to cross cell-walls effortlessly without building oily congestion layer trace.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: INTERACTIVE INGREDIENT SPOTLIGHT -->
+        <section id="ingredients" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+            <div class="text-center space-y-3 mb-16 reveal">
+                <span class="text-xs tracking-[0.3em] uppercase text-[#D1A084] font-semibold">Active Elements</span>
+                <h2 class="text-3xl sm:text-4xl font-light text-[#2C2A29] font-serif">What Goes Inside</h2>
+                <p class="text-sm text-[#7C756E] font-light max-w-md mx-auto">Click individual botanical highlights below to unpack our exact nutritional intent.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Accordion Item 1 -->
+                <div class="bg-white border border-[#EAE5DF] p-8 cursor-pointer hover:border-[#8EA899] transition duration-300 reveal" onclick="toggleIngredient(1)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-base font-medium text-[#2C2A29] tracking-wider uppercase">01 / Plant Squalane</h4>
+                        <span id="ing-icon-1" class="text-xl font-light text-neutral-400">+</span>
+                    </div>
+                    <div id="ing-content-1" class="hidden mt-4 pt-4 border-t border-neutral-100 text-sm text-[#5C5752] font-light leading-relaxed">
+                        Extracted directly from organic Mediterranean olives, our custom squalane structure mirrors your skin’s own sebum matrix to seamlessly seal continuous hydration levels without weighing facial pores down.
+                    </div>
+                </div>
+
+                <!-- Accordion Item 2 -->
+                <div class="bg-white border border-[#EAE5DF] p-8 cursor-pointer hover:border-[#8EA899] transition duration-300 reveal" onclick="toggleIngredient(2)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-base font-medium text-[#2C2A29] tracking-wider uppercase">02 / Fermented Cica</h4>
+                        <span id="ing-icon-2" class="text-xl font-light text-neutral-400">+</span>
+                    </div>
+                    <div id="ing-content-2" class="hidden mt-4 pt-4 border-t border-neutral-100 text-sm text-[#5C5752] font-light leading-relaxed">
+                        Centella Asiatica undergone intensive 48-hour microbial fermentation to double complex antioxidant density. This ultra-soothing fluid quickly quenches deep inflammation loops and accelerates barrier tissue recovery.
+                    </div>
+                </div>
+
+                <!-- Accordion Item 3 -->
+                <div class="bg-white border border-[#EAE5DF] p-8 cursor-pointer hover:border-[#8EA899] transition duration-300 reveal" onclick="toggleIngredient(3)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-base font-medium text-[#2C2A29] tracking-wider uppercase">03 / Rice Amino Complex</h4>
+                        <span id="ing-icon-3" class="text-xl font-light text-neutral-400">+</span>
+                    </div>
+                    <div id="ing-content-3" class="hidden mt-4 pt-4 border-t border-neutral-100 text-sm text-[#5C5752] font-light leading-relaxed">
+                        A concentrated nutrient blend rich in essential amino structures and enzymes harvested sustainably from heritage fields to brighten dull spots naturally while encouraging healthy elastane matrix synthesis loops.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: CUSTOMER TESTIMONIALS -->
+        <section id="testimonials" class="bg-[#EAE5DF]/40 border-t border-[#EAE5DF] py-24 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-3 mb-20 reveal">
+                    <span class="text-xs tracking-[0.3em] uppercase text-[#8EA899] font-semibold block">Community Voice</span>
+                    <h2 class="text-3xl sm:text-4xl font-light text-[#2C2A29] font-serif">The AURA Transformation</h2>
+                    <div class="w-16 h-[1px] bg-[#8EA899] mx-auto mt-4"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-white p-8 shadow-sm border border-[#EAE5DF]/60 flex flex-col justify-between reveal">
+                        <div class="space-y-4">
+                            <div class="text-[#D1A084] tracking-widest text-xs">★★★★★</div>
+                            <p class="text-sm text-[#5C5752] font-light italic leading-relaxed">
+                                "My chronically hyper-reactive skin has never felt this calm. After just ten days using the Barrier Cream, my raw dry patches fully recovered."
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-neutral-100 text-xs">
+                            <p class="font-semibold text-[#2C2A29]">Margot E.</p>
+                            <p class="text-[#8EA899] tracking-wider uppercase mt-0.5">Verified Purchase — London</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white p-8 shadow-sm border border-[#EAE5DF]/60 flex flex-col justify-between reveal">
+                        <div class="space-y-4">
+                            <div class="text-[#D1A084] tracking-widest text-xs">★★★★★</div>
+                            <p class="text-sm text-[#5C5752] font-light italic leading-relaxed">
+                                "The Niacinamide serum yields an immediate satin glass finish without building up oil under daytime foundation. A beautiful daily ritual base."
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-neutral-100 text-xs">
+                            <p class="font-semibold text-[#2C2A29]">David K.</p>
+                            <p class="text-[#8EA899] tracking-wider uppercase mt-0.5">Verified Purchase — New York</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white p-8 shadow-sm border border-[#EAE5DF]/60 flex flex-col justify-between reveal">
+                        <div class="space-y-4">
+                            <div class="text-[#D1A084] tracking-widest text-xs">★★★★★</div>
+                            <p class="text-sm text-[#5C5752] font-light italic leading-relaxed">
+                                "Pure brand integrity paired with premium botanical engineering. The Milky Cleanser dissolves waterproof zinc layers flawlessly."
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-neutral-100 text-xs">
+                            <p class="font-semibold text-[#2C2A29]">Sasha T.</p>
+                            <p class="text-[#8EA899] tracking-wider uppercase mt-0.5">Verified Purchase — Tokyo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: DETAILED COMPREHENSIVE FAQ ACCORDION -->
+        <section id="faq" class="bg-white py-24 lg:py-32">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6">
+                <div class="text-center space-y-3 mb-16 reveal">
+                    <h2 class="text-3xl font-light text-[#2C2A29] font-serif">Frequently Answered Queries</h2>
+                    <p class="text-sm text-[#7C756E] font-light">Have specific skincare ritual alignment questions? We have you completely covered.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <div class="border border-[#EAE5DF] rounded-none overflow-hidden reveal">
+                        <button onclick="toggleFaq(1)" class="w-full text-left p-6 font-medium text-sm sm:text-base text-[#2C2A29] flex justify-between items-center hover:bg-neutral-50/60 transition">
+                            <span>Are these complexes safe for chronic acne-prone or rosacea profiles?</span>
+                            <span id="faq-icon-1" class="text-lg font-light text-neutral-400 transition-transform duration-200">+</span>
+                        </button>
+                        <div id="faq-content-1" class="hidden p-6 pt-0 text-sm text-[#5C5752] font-light border-t border-neutral-50 leading-relaxed bg-neutral-50/20">
+                            Yes, absolutely. Our entire protocol is formulated without known synthetic volatile compounds, drying alcohols, artificial carrier scents, or pore-blocking mineral oils to fully preserve sensitive dermatological barriers.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="border border-[#EAE5DF] rounded-none overflow-hidden reveal">
+                        <button onclick="toggleFaq(2)" class="w-full text-left p-6 font-medium text-sm sm:text-base text-[#2C2A29] flex justify-between items-center hover:bg-neutral-50/60 transition">
+                            <span>How long down the timeline can I expect visible skin improvement?</span>
+                            <span id="faq-icon-2" class="text-lg font-light text-neutral-400 transition-transform duration-200">+</span>
+                        </button>
+                        <div id="faq-content-2" class="hidden p-6 pt-0 text-sm text-[#5C5752] font-light border-t border-neutral-50 leading-relaxed bg-neutral-50/20">
+                            While immediate surface texture hydration plumping shows within hours, comprehensive cellular cell turnaround shifts and noticeable redness calming usually materialize over 14 to 28 days of regular daily compliance.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="border border-[#EAE5DF] rounded-none overflow-hidden reveal">
+                        <button onclick="toggleFaq(3)" class="w-full text-left p-6 font-medium text-sm sm:text-base text-[#2C2A29] flex justify-between items-center hover:bg-neutral-50/60 transition">
+                            <span>What are your brand environmental packaging metrics?</span>
+                            <span id="faq-icon-3" class="text-lg font-light text-neutral-400 transition-transform duration-200">+</span>
+                        </button>
+                        <div id="faq-content-3" class="hidden p-6 pt-0 text-sm text-[#5C5752] font-light border-t border-neutral-50 leading-relaxed bg-neutral-50/20">
+                            We package exclusively inside 100% recyclable, UV-filtered premium apothecary frosted glass to naturally shield vulnerable raw botanicals from solar degeneration while bypassing the utilization of virgin single-use plastics entirely.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDITORIAL NEWSLETTER OPT-IN LAYER -->
+        <section class="bg-[#8EA899] text-white py-24 text-center relative overflow-hidden">
+            <div class="max-w-xl mx-auto px-4 sm:px-6 relative z-10 space-y-6 reveal">
+                <span class="text-xs tracking-[0.3em] uppercase opacity-90 font-medium block">The AURA Circle</span>
+                <h2 class="text-3xl sm:text-4xl font-light font-serif">Receive 15% off your initial ritual</h2>
+                <p class="text-xs sm:text-sm text-neutral-100/90 font-light max-w-md mx-auto leading-relaxed">
+                    Join our monthly digest for early batch drops, ingredient sourcing journals, and direct advice from leading clean board dermatologists.
+                </p>
+                <form class="pt-3 flex flex-col sm:flex-row gap-2 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('Thank you for subscribing to AURA.');">
+                    <input type="email" placeholder="Enter your email" required class="flex-1 px-5 py-4 bg-white text-[#2C2A29] text-xs font-light tracking-wide focus:outline-none rounded-none w-full">
+                    <button type="submit" class="bg-[#2C2A29] hover:bg-neutral-800 text-white text-xs font-semibold tracking-widest uppercase px-8 py-4 transition rounded-none shrink-0">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- PROFESSIONAL BRAND FOOTER -->
+    <footer class="bg-[#2C2A29] text-white pt-20 pb-12 border-t border-neutral-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12 text-xs font-light border-b border-neutral-800 pb-16 mb-10">
+            <!-- Col 1: Brand Info -->
+            <div class="space-y-4">
+                <h3 class="text-lg tracking-[0.25em] uppercase font-serif font-medium">AURA</h3>
+                <p class="text-neutral-400 leading-relaxed">
+                    Developing modern clean dermal solutions with premium botanical intelligence to gracefully restore your unique complexion balance cleanly.
+                </p>
+            </div>
+
+            <!-- Col 2: Navigation Utilities -->
+            <div class="space-y-3">
+                <h4 class="font-semibold tracking-wider text-neutral-300 uppercase">The Collective</h4>
+                <ul class="space-y-2.5 text-neutral-400">
+                    <li><a href="#" class="hover:text-white transition">Hydrating Elisirs</a></li>
+                    <li><a href="#" class="hover:text-white transition">Barrier Creams</a></li>
+                    <li><a href="#" class="hover:text-white transition">Balancing Cleansers</a></li>
+                    <li><a href="#" class="hover:text-white transition">Seasonal Kits</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Customer Care Help -->
+            <div class="space-y-3">
+                <h4 class="font-semibold tracking-wider text-neutral-300 uppercase">Support Pathway</h4>
+                <ul class="space-y-2.5 text-neutral-400">
+                    <li><a href="#" class="hover:text-white transition">Shipping Logistics</a></li>
+                    <li><a href="#" class="hover:text-white transition">Returns Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition">Batch Trace Lookup</a></li>
+                    <li><a href="#" class="hover:text-white transition">Contact Dermatologists</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Corporate Studio Contact Coordinates -->
+            <div class="space-y-3">
+                <h4 class="font-semibold tracking-wider text-neutral-300 uppercase">The Lab Studio</h4>
+                <p class="text-neutral-400 leading-relaxed">
+                    700 Botanical Drive, Studio 4A<br>
+                    San Francisco, CA 94103<br><br>
+                    <span class="text-neutral-200 block font-medium font-mono">concierge@auraskincare.com</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Lower Baseline Attribution Legalities -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-[11px] text-neutral-500 space-y-4 sm:space-y-0">
+            <p>&copy; 2026 AURA Laboratories Collective. All rights reserved.</p>
+            <div class="space-x-6">
+                <a href="#" class="hover:text-white transition">Privacy Architecture</a>
+                <a href="#" class="hover:text-white transition">Terms of Protocol</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE ANIMATION & DATA UI INTERACTION LOGIC -->
+    <script>
+        // 1. Mobile Menu Open / Close Responsive Handling Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 2. Interactive Section 5 Ingredient Card Expansion Toggles
+        function toggleIngredient(id) {
+            const content = document.getElementById(`ing-content-${id}`);
+            const icon = document.getElementById(`ing-icon-${id}`);
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.textContent = '−';
+            } else {
+                content.classList.add('hidden');
+                icon.textContent = '+';
+            }
+        }
+
+        // 3. Interactive Section 7 FAQ Accordion UI Handler 
+        function toggleFaq(id) {
+            const content = document.getElementById(`faq-content-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(45deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // 4. Expert Scroll Intersection Observer for Premium Smooth-Fade Loading Animations
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Stop watching once active class is loaded to maintain clean UI flow
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.1, // Trigger whenever 10% of element meets screen path view
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+    </script>
+</body>
+</html>
